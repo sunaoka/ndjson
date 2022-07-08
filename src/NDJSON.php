@@ -47,6 +47,8 @@ class NDJSON extends SplFileObject
             }
         }
 
-        yield $rows;
+        if ($count > 0) {
+            yield $rows;
+        }
     }
 }

@@ -42,5 +42,32 @@ class NDJSONTest extends TestCase
         $generator = $ndjson->readlines(10);
         $actual = $generator->current();
         self::assertSame([['test' => '001'], ['test' => '002'], ['test' => '003'], ['test' => '004'], ['test' => '005']], $actual);
+
+        $ndjson->rewind();
+
+        $actual = 0;
+        foreach ($ndjson->readlines(1) as $json) {
+            $actual++;
+        }
+
+        $this->assertSame(5, $actual);
+
+        $ndjson->rewind();
+
+        $actual = 0;
+        foreach ($ndjson->readlines(5) as $json) {
+            $actual++;
+        }
+
+        $this->assertSame(1, $actual);
+
+        $ndjson->rewind();
+
+        $actual = 0;
+        foreach ($ndjson->readlines(10) as $json) {
+            $actual++;
+        }
+
+        $this->assertSame(1, $actual);
     }
 }
