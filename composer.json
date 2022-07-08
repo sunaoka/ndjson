@@ -1,0 +1,32 @@
+{
+    "name": "sunaoka/ndjson",
+    "description": "",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sunaoka",
+            "email": "sunaoka@pocari.org"
+        }
+    ],
+    "require": {
+        "php": "^5.5 | ^5.6 | ^7.0 | ^7.1 | ^7.2 | ^7.3 | ^7.4 | ^8.0 | ^8.1 | ^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4 | ^5 | ^6 | ^7 | ^8 | ^9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sunaoka\\Ndjson\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
