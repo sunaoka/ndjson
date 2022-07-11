@@ -7,6 +7,11 @@ use SplFileObject;
 
 class NDJSON extends SplFileObject
 {
+    public function __construct($filename)
+    {
+        parent::__construct($filename, 'r+');
+    }
+
     /**
      * Gets line from file and decode a JSON string
      *
@@ -50,5 +55,41 @@ class NDJSON extends SplFileObject
         if ($count > 0) {
             yield $rows;
         }
+    }
+
+    /**
+     * Write the array to file with JSON encoding
+     *
+     * @param array  $values
+     * @param int    $json_flags
+     * @param string $separator
+     *
+     * @return int|false
+     */
+    public function writeline($values, $json_flags = 0, $separator = "\n")
+    {
+        $json_flags &= ~JSON_PRETTY_PRINT;
+
+        return $this->fwrite(json_encode($values, $json_flags &~ JSON_PRETTY_PRINT) . $separator);
+    }
+
+    /**
+     * Write multiple arrays to a file with JSON encoding
+     *
+     * @param array  $values
+     * @param int    $json_flags
+     * @param string $separator
+     *
+     * @return int|false
+     */
+    public function writelines($values, $json_flags = 0, $separator = "\n")
+    {
+        $json_flags &= ~JSON_PRETTY_PRINT;
+
+        $values = array_map(static function ($value) use ($json_flags) {
+            return json_encode($value, $json_flags);
+        }, $values);
+
+        return $this->fwrite(implode($separator, $values) . $separator);
     }
 }
