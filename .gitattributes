@@ -1,3 +1,7 @@
+* text=auto
+/tests/fixtures/basic-crlf.ndjson text eol=crlf
+/tests/fixtures/basic-lf.ndjson text eol=lf
+
 /.gitattributes export-ignore
 /.github export-ignore
 /.gitignore export-ignore
