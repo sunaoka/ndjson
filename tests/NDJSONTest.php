@@ -9,7 +9,7 @@ class NDJSONTest extends TestCase
 {
     public function test_readline_successful()
     {
-        $ndjson = new NDJSON(__DIR__ . '/fixtures/001.ndjson');
+        $ndjson = new NDJSON(__DIR__ . '/fixtures/basic.ndjson');
 
         $actual = $ndjson->readline();
         self::assertSame(['test' => '001'], $actual);
@@ -20,7 +20,7 @@ class NDJSONTest extends TestCase
 
     public function test_readlines_successful()
     {
-        $ndjson = new NDJSON(__DIR__ . '/fixtures/001.ndjson');
+        $ndjson = new NDJSON(__DIR__ . '/fixtures/basic.ndjson');
 
         $generator = $ndjson->readlines(3);
 
@@ -69,5 +69,10 @@ class NDJSONTest extends TestCase
         }
 
         $this->assertSame(1, $actual);
+
+        $ndjson = new NDJSON(__DIR__ . '/fixtures/empty.ndjson');
+        $generator = $ndjson->readlines(10);
+        $actual = $generator->current();
+        $this->assertNull($actual);
     }
 }
