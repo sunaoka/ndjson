@@ -14,12 +14,12 @@ class NDJSON extends SplFileObject
      */
     public function readline()
     {
-        $row = trim($this->fgets());
-        if ($row === '') {
+        $row = $this->fgets();
+        if (empty($row)) {
             return null;
         }
 
-        return json_decode($row, true);
+        return json_decode(trim($row), true);
     }
 
     /**
