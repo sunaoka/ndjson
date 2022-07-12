@@ -9,7 +9,7 @@ class NDJSON extends SplFileObject
 {
     public function __construct($filename)
     {
-        parent::__construct($filename, 'r+');
+        parent::__construct($filename, 'a+');
     }
 
     /**
