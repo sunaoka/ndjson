@@ -17,7 +17,7 @@ For better performance, you can also read and write on multiple lines.
 ## Installation
 
 ```bash
-composer sunaoka/ndjson
+composer require sunaoka/ndjson
 ```
 
 ## Usage
