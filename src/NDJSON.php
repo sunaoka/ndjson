@@ -70,7 +70,7 @@ class NDJSON extends SplFileObject
     {
         $json_flags &= ~JSON_PRETTY_PRINT;
 
-        return $this->fwrite(json_encode($values, $json_flags &~ JSON_PRETTY_PRINT) . $separator);
+        return $this->fwrite(json_encode($values, $json_flags) . $separator);
     }
 
     /**
