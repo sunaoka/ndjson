@@ -1,6 +1,6 @@
 {
     "name": "sunaoka/ndjson",
-    "description": "",
+    "description": "A PHP library to read and write NDJSON (Newline Delimited JSON)",
     "type": "library",
     "license": "MIT",
     "authors": [
