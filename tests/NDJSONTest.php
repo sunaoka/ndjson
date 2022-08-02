@@ -31,6 +31,29 @@ class NDJSONTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider emptyLineProvider
+     *
+     * @param string $file
+     */
+    public function test_readline_empty_line_successful($file)
+    {
+        $ndjson = new NDJSON($file);
+
+        $expected = 1;
+        while ($json = $ndjson->readline()) {
+            self::assertSame(sprintf('%03d', $expected++), $json['test']);
+        }
+    }
+
+    public function emptyLineProvider()
+    {
+        return [
+            [__DIR__ . '/fixtures/empty-line-lf.ndjson'],
+            [__DIR__ . '/fixtures/empty-line-crlf.ndjson'],
+        ];
+    }
+
     public function test_readline_empty_successful()
     {
         $ndjson = new NDJSON(__DIR__ . '/fixtures/empty.ndjson');

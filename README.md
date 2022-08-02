@@ -41,12 +41,7 @@ use Sunaoka\Ndjson\NDJSON;
 
 $ndjson = new NDJSON('/path/to/file.ndjson');
 
-while ($ndjson->eof() === false) {
-    /** @var array|null $json */
-    $json = $ndjson->readline();
-    if ($json === null) {
-        continue;
-    }
+while ($json = $ndjson->readline()) {
     var_dump($json);
 }
 ```

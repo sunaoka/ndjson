@@ -10,6 +10,7 @@ class NDJSON extends SplFileObject
     public function __construct($filename)
     {
         parent::__construct($filename, 'a+');
+        $this->setFlags(SplFileObject::DROP_NEW_LINE);
     }
 
     /**
@@ -21,6 +22,9 @@ class NDJSON extends SplFileObject
     {
         $row = $this->fgets();
         if (empty($row)) {
+            if ($this->eof() === false) {
+                return $this->readline();
+            }
             return null;
         }
 
