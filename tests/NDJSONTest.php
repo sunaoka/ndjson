@@ -23,7 +23,7 @@ class NDJSONTest extends TestCase
         self::assertSame(['test' => '002'], $actual);
     }
 
-    public function readlineProvider()
+    public static function readlineProvider()
     {
         return [
             [__DIR__ . '/fixtures/basic-lf.ndjson'],
@@ -46,7 +46,7 @@ class NDJSONTest extends TestCase
         }
     }
 
-    public function emptyLineProvider()
+    public static function emptyLineProvider()
     {
         return [
             [__DIR__ . '/fixtures/empty-line-lf.ndjson'],
@@ -120,7 +120,7 @@ class NDJSONTest extends TestCase
         self::assertSame(1, $actual);
     }
 
-    public function readlinesProvider()
+    public static function readlinesProvider()
     {
         return [
             [__DIR__ . '/fixtures/basic-lf.ndjson'],
