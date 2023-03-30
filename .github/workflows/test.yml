@@ -22,7 +22,7 @@ jobs:
     name: PHP ${{ matrix.php }}
 
     steps:
-      - name: Setup PHP ${{ matrix.php-version }}
+      - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
