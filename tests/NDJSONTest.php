@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use Sunaoka\Ndjson\NDJSON;
 use PHPUnit\Framework\TestCase;
+use Sunaoka\Ndjson\NDJSON;
 
 class NDJSONTest extends TestCase
 {
@@ -11,6 +11,8 @@ class NDJSONTest extends TestCase
      * @dataProvider readlineProvider
      *
      * @param string $file
+     *
+     * @return void
      */
     public function test_readline_newline_successful($file)
     {
@@ -23,6 +25,9 @@ class NDJSONTest extends TestCase
         self::assertSame(['test' => '002'], $actual);
     }
 
+    /**
+     * @return string[][]
+     */
     public static function readlineProvider()
     {
         return [
@@ -35,6 +40,8 @@ class NDJSONTest extends TestCase
      * @dataProvider emptyLineProvider
      *
      * @param string $file
+     *
+     * @return void
      */
     public function test_readline_empty_line_successful($file)
     {
@@ -46,6 +53,9 @@ class NDJSONTest extends TestCase
         }
     }
 
+    /**
+     * @return string[][]
+     */
     public static function emptyLineProvider()
     {
         return [
@@ -54,6 +64,9 @@ class NDJSONTest extends TestCase
         ];
     }
 
+    /**
+     * @return void
+     */
     public function test_readline_empty_successful()
     {
         $ndjson = new NDJSON(__DIR__ . '/fixtures/empty.ndjson');
@@ -66,6 +79,8 @@ class NDJSONTest extends TestCase
      * @dataProvider readlinesProvider
      *
      * @param string $file
+     *
+     * @return void
      */
     public function test_readlines_newline_successful($file)
     {
@@ -120,6 +135,9 @@ class NDJSONTest extends TestCase
         self::assertSame(1, $actual);
     }
 
+    /**
+     * @return string[][]
+     */
     public static function readlinesProvider()
     {
         return [
@@ -128,6 +146,9 @@ class NDJSONTest extends TestCase
         ];
     }
 
+    /**
+     * @return void
+     */
     public function test_readlines_empty_successful()
     {
         $ndjson = new NDJSON(__DIR__ . '/fixtures/empty.ndjson');
@@ -138,6 +159,9 @@ class NDJSONTest extends TestCase
         self::assertNull($actual);
     }
 
+    /**
+     * @return void
+     */
     public function test_writeline_successful()
     {
         $ndjson = new NDJSON('php://memory');
@@ -157,6 +181,9 @@ class NDJSONTest extends TestCase
         self::assertSame(['test' => '002'], $actual);
     }
 
+    /**
+     * @return void
+     */
     public function test_writelines_successful()
     {
         $ndjson = new NDJSON('php://memory');
