@@ -5,8 +5,15 @@ namespace Sunaoka\Ndjson;
 use Generator;
 use SplFileObject;
 
+/**
+ * @template TKey as array-key
+ * @template TValue
+ */
 class NDJSON extends SplFileObject
 {
+    /**
+     * @param string $filename
+     */
     public function __construct($filename)
     {
         parent::__construct($filename, 'a+');
@@ -16,7 +23,7 @@ class NDJSON extends SplFileObject
     /**
      * Gets line from file and decode a JSON string
      *
-     * @return array|null
+     * @return array<TKey, TValue>|null
      */
     public function readline()
     {
@@ -28,6 +35,7 @@ class NDJSON extends SplFileObject
             return null;
         }
 
+        /** @var array<TKey, TValue>|null */
         return json_decode(trim($row), true);
     }
 
@@ -64,9 +72,9 @@ class NDJSON extends SplFileObject
     /**
      * Write the array to file with JSON encoding
      *
-     * @param array  $values
-     * @param int    $json_flags
-     * @param string $separator
+     * @param array<TKey, TValue> $values
+     * @param int                 $json_flags
+     * @param string              $separator
      *
      * @return int|false
      */
@@ -80,9 +88,9 @@ class NDJSON extends SplFileObject
     /**
      * Write multiple arrays to a file with JSON encoding
      *
-     * @param array  $values
-     * @param int    $json_flags
-     * @param string $separator
+     * @param array<TKey, TValue> $values
+     * @param int                 $json_flags
+     * @param string              $separator
      *
      * @return int|false
      */
