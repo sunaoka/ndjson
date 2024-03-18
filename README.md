@@ -8,7 +8,7 @@
 
 ---
 
-A PHP library to read and write [NDJSON](http://ndjson.org/) (Newline Delimited JSON).
+A PHP library to read and write [NDJSON](https://github.com/ndjson) (Newline Delimited JSON).
 
 Read and write one line at a time to execute with low memory usage.
 

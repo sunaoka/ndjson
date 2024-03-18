@@ -14,9 +14,9 @@ class NDJSON extends SplFileObject
     /**
      * @param string $filename
      */
-    public function __construct($filename)
+    public function __construct($filename, $mode = 'a+')
     {
-        parent::__construct($filename, 'a+');
+        parent::__construct($filename, $mode);
         $this->setFlags(SplFileObject::DROP_NEW_LINE);
     }
 
