@@ -2,14 +2,11 @@
 
 namespace Sunaoka\Ndjson;
 
-use Generator;
-use SplFileObject;
-
 /**
  * @template TKey as array-key
  * @template TValue
  */
-class NDJSON extends SplFileObject
+class NDJSON extends \SplFileObject
 {
     /**
      * @param string $filename The file to open
@@ -18,7 +15,7 @@ class NDJSON extends SplFileObject
     public function __construct($filename, $mode = 'a+')
     {
         parent::__construct($filename, $mode);
-        $this->setFlags(SplFileObject::DROP_NEW_LINE);
+        $this->setFlags(\SplFileObject::DROP_NEW_LINE);
     }
 
     /**
@@ -45,7 +42,7 @@ class NDJSON extends SplFileObject
      *
      * @param int $lines Number of lines to read
      *
-     * @return Generator<array<int, array<TKey, TValue>>>
+     * @return \Generator<array<int, array<TKey, TValue>>>
      */
     public function readlines($lines)
     {
