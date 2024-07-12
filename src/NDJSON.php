@@ -2,22 +2,20 @@
 
 namespace Sunaoka\Ndjson;
 
-use Generator;
-use SplFileObject;
-
 /**
  * @template TKey as array-key
  * @template TValue
  */
-class NDJSON extends SplFileObject
+class NDJSON extends \SplFileObject
 {
     /**
-     * @param string $filename
+     * @param string $filename The file to open
+     * @param string $mode [optional] The mode in which to open the file. See {@see fopen} for a list of allowed modes.
      */
     public function __construct($filename, $mode = 'a+')
     {
         parent::__construct($filename, $mode);
-        $this->setFlags(SplFileObject::DROP_NEW_LINE);
+        $this->setFlags(\SplFileObject::DROP_NEW_LINE);
     }
 
     /**
@@ -42,9 +40,9 @@ class NDJSON extends SplFileObject
     /**
      * Get lines from file and decode a JSON string
      *
-     * @param int $lines
+     * @param int $lines Number of lines to read
      *
-     * @return Generator
+     * @return \Generator<array<int, array<TKey, TValue>>>
      */
     public function readlines($lines)
     {
@@ -76,7 +74,7 @@ class NDJSON extends SplFileObject
      * @param int                 $json_flags
      * @param string              $separator
      *
-     * @return int|false
+     * @return int|false the number of bytes written, or 0 (false since 7.4) on error.
      */
     public function writeline($values, $json_flags = 0, $separator = "\n")
     {
@@ -92,7 +90,7 @@ class NDJSON extends SplFileObject
      * @param int                 $json_flags
      * @param string              $separator
      *
-     * @return int|false
+     * @return int|false the number of bytes written, or 0 (false since 7.4) on error.
      */
     public function writelines($values, $json_flags = 0, $separator = "\n")
     {

@@ -9,6 +9,10 @@ on:
 jobs:
   test:
     runs-on: ${{ matrix.os }}
+
+    env:
+      latest_php: 8.3
+
     strategy:
       fail-fast: false
       matrix:
@@ -36,8 +40,7 @@ jobs:
         run: composer install --quiet --no-ansi --prefer-dist --no-progress --no-interaction
 
       - name: Migrate phpunit XML configuration
-        continue-on-error: true
-        run: vendor/bin/phpunit --migrate-configuration
+        run: vendor/bin/phpunit --migrate-configuration || true
 
       - name: Run test suite
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
@@ -48,3 +51,4 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           fail_ci_if_error: false
+        if: matrix.php == env.latest_php
