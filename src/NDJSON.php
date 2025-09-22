@@ -11,10 +11,11 @@ class NDJSON extends \SplFileObject
     /**
      * @param string $filename The file to open
      * @param string $mode [optional] The mode in which to open the file. See {@see fopen} for a list of allowed modes.
+     * @param resource $context [optional] A valid context resource created with {@see stream_context_create}
      */
-    public function __construct($filename, $mode = 'a+')
+    public function __construct($filename, $mode = 'a+', $context = null)
     {
-        parent::__construct($filename, $mode);
+        parent::__construct($filename, $mode, false, $context);
         $this->setFlags(\SplFileObject::DROP_NEW_LINE);
     }
 
