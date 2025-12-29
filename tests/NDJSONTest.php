@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Sunaoka\Ndjson\NDJSON;
 
@@ -14,6 +15,7 @@ class NDJSONTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('readlineProvider')]
     public function test_readline_newline_successful($file)
     {
         $ndjson = new NDJSON($file);
@@ -43,6 +45,7 @@ class NDJSONTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('emptyLineProvider')]
     public function test_readline_empty_line_successful($file)
     {
         $ndjson = new NDJSON($file);
@@ -82,6 +85,7 @@ class NDJSONTest extends TestCase
      *
      * @return void
      */
+    #[DataProvider('readlinesProvider')]
     public function test_readlines_newline_successful($file)
     {
         $ndjson = new NDJSON($file);
